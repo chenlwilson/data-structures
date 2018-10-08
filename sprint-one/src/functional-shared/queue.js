@@ -33,10 +33,9 @@ var queueMethods = {
   },
 
   dequeue: function() {
-    var firstItem = this.storage[this.stackMin];
-    delete this.storage[this.stackMin];
     this.stackMin++;
-    return firstItem;
+    return this.storage[this.stackMin-1];
+    delete this.storage[this.stackMin-1];
   }
 
 };

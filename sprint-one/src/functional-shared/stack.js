@@ -27,15 +27,14 @@ var stackMethods = {
   },
 
   push: function(value) {
-    this.storage[this.stackSize] = value;
-    this.stackSize++;
+    this.storage[this.stackSize] = value;//0:a
+    this.stackSize++;//1
   },
 
   pop: function() {
-    this.stackSize--;
-    var lastItem = this.storage[this.stackSize];
+    this.stackSize--;//1=>0
+    return this.storage[this.stackSize];//0:a
     delete this.storage[this.stackSize];
-    return lastItem;
   }
 
 }
