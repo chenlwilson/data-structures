@@ -3,8 +3,8 @@ var Queue = function() {
   // but try not not reference your old code in writing the new style.
   var someInstance = {};
   someInstance.storage = {};
-  someInstance.stackMax = 0;
-  someInstance.stackMin = 0;
+  someInstance.sizeMax = 0;
+  someInstance.sizeMin = 0;
 
   _.extend(someInstance, queueMethods);
 
@@ -21,21 +21,21 @@ var Queue = function() {
 
 var queueMethods = {
   size: function() {
-    if(this.stackMax - this.stackMin > 0) {
-      return this.stackMax - this.stackMin;
+    if(this.sizeMax - this.sizeMin > 0) {
+      return this.sizeMax - this.sizeMin;
     }
     return 0;
   },
 
   enqueue: function(value) {
-    this.storage[this.stackMax] = value;
-    this.stackMax++;
+    this.storage[this.sizeMax] = value;
+    this.sizeMax++;
   },
 
   dequeue: function() {
-    this.stackMin++;
-    return this.storage[this.stackMin-1];
-    delete this.storage[this.stackMin-1];
+    this.sizeMin++;
+    return this.storage[this.sizeMin-1];
+    delete this.storage[this.sizeMin-1];
   }
 
 };
