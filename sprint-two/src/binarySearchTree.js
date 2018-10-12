@@ -49,17 +49,15 @@ var BinarySearchTree = function(value) {
 
     var callEachValue = function(node) {
       //{value: 5, left: {value: 3, }}
-      if (node.value !== null) {
-        cb(node.value);
+      cb(node.value);
+
+      if (node.left) {
+        callEachValue(node.left);
       }
-      if (node.left.value !== null) {
-        cb(node.left.value);
+      if (node.right) {
+        callEachValue(node.right);
       }
-      if (node.right.value !== null) {
-        cb(node.right.value);
-      }
-      callEachValue(node.right);
-      callEachValue(node.left);
+
     };
 
     return callEachValue(newBST);
@@ -74,4 +72,7 @@ var BinarySearchTree = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * insert: O(n)
+ * contains: O(n)
+ * depthFirstLog: O(n)
  */
