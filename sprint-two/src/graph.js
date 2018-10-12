@@ -16,12 +16,16 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
+  var container = [];
   delete this.nodes[node];
   for (var key in this.nodes) { //nodes = {{3: {2: true}}} this.nodes[2][3]
     if (this.nodes[key][node] === true) {
+
       delete this.nodes[key][node];
     }
   }
+
+
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
