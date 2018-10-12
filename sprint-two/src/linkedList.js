@@ -6,7 +6,7 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
     var newNode = Node(value);//{value:value, next:null}
-    if(list.head === null && list.head === null) {
+    if (list.head === null && list.head === null) {
       list.tail = newNode;
       list.head = newNode;
     }
@@ -27,7 +27,7 @@ var LinkedList = function() {
         return hasTarget(n.next);
       }
       return false;
-    }
+    };
 
     if (list.head.value === target) {
       return true;
@@ -51,4 +51,7 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
- */
+ * addToTail: O(1)
+ * removeHead: O(1)
+ * contains: O(n)
+*/
