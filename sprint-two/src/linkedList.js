@@ -1,27 +1,28 @@
+
 var LinkedList = function() {
 
   var list = {};
-  list.head = null;
-  list.tail = null;
+  list._head = null;
+  list._tail = null;
 
   list.addToTail = function(value) {
-    var oldTail = list.tail;
+    var oldTail = list._tail;
     var newNode = Node(value);//{value:value, next:null}
-    if (list.head === null && list.head === null) {
-      list.tail = newNode;
-      list.head = newNode;
+    if (list._head === null && list._head === null) {
+      list._tail = newNode;
+      list._head = newNode;
     }
 
-    list.tail.next = newNode;//add new node to the lastnode.next
-    list.tail = newNode;//point tail to the new node
+    list._tail.next = newNode;//add new node to the lastnode.next
+    list._tail = newNode;//point tail to the new node
     if (oldTail !== null) {
       return oldTail.value;
     }
   };
 
   list.removeHead = function() {
-    list.head = list.head.next;//point head to the 2nd node
-    return list.head.value;
+    list._head = list._head.next;//point head to the 2nd node
+    return list._head.value;
   };
 
   list.contains = function(target) {
@@ -34,10 +35,10 @@ var LinkedList = function() {
       return false;
     };
 
-    if (list.head.value === target) {
+    if (list._head.value === target) {
       return true;
-    } else if (list.head.next) {
-      return hasTarget(list.head.next);
+    } else if (list._head.next) {
+      return hasTarget(list._head.next);
     }
     return false;
   };

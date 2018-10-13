@@ -1,26 +1,26 @@
 var BinarySearchTree = function(value) {
   var newBST = {};
 
-  newBST.value = value;
-  newBST.left = null;
-  newBST.right = null;
+  newBST._value = value;
+  newBST._left = null;
+  newBST._right = null;
 
   newBST.insert = function(newValue) {
     var newNode = BinarySearchTree(newValue);
 
     var addNode = function(tree) {
-      if (newValue < tree.value) {
-        if (tree.left === null) {
-          tree.left = newNode;
+      if (newValue < tree._value) {
+        if (tree._left === null) {
+          tree._left = newNode;
         }
-        return addNode(tree.left);
+        return addNode(tree._left);
       }
 
-      if (newValue > tree.value) {
-        if (tree.right === null) {
-          tree.right = newNode;
+      if (newValue > tree._value) {
+        if (tree._right === null) {
+          tree._right = newNode;
         }
-        return addNode(tree.right);
+        return addNode(tree._right);
       }
     };
 
@@ -32,12 +32,12 @@ var BinarySearchTree = function(value) {
 
     var search = function(node) {
 
-      if (target === node.value) {
+      if (target === node._value) {
         return true;
-      } else if (target < node.value && node.left !== null) {
-        return search(node.left);
-      } else if (target > node.value && node.right !== null) {
-        return search(node.right);
+      } else if (target < node._value && node._left !== null) {
+        return search(node._left);
+      } else if (target > node._value && node._right !== null) {
+        return search(node._right);
       }
       return false;
     };
@@ -49,13 +49,13 @@ var BinarySearchTree = function(value) {
 
     var callEachValue = function(node) {
       //{value: 5, left: {value: 3, }}
-      cb(node.value);
+      cb(node._value);
 
-      if (node.left) {
-        callEachValue(node.left);
+      if (node._left) {
+        callEachValue(node._left);
       }
-      if (node.right) {
-        callEachValue(node.right);
+      if (node._right) {
+        callEachValue(node._right);
       }
 
     };

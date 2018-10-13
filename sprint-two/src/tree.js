@@ -1,9 +1,9 @@
 var Tree = function(value) {
   var newTree = {};
 
-  newTree.value = value;
+  newTree._value = value;
 
-  newTree.children = [];
+  newTree._children = [];
 
   _.extend(newTree, treeMethods);
 
@@ -14,19 +14,19 @@ var treeMethods = {};
 
 treeMethods.addChild = function(value) {
   var newNode = Tree(value);
-  this.children.push(newNode);
-  return this.children.length;
+  this._children.push(newNode);
+  return this._children.length;
 };
 
 treeMethods.contains = function(target) {
   var result = false;
   var findTarget = function(tree, targetValue) {
-    if (tree.value === targetValue ) {
+    if (tree._value === targetValue ) {
       result = true;
     } else {
-      if (tree.children.length > 0) {
-        for (let i = 0; i < tree.children.length; i++) {
-          findTarget(tree.children[i], targetValue);
+      if (tree._children.length > 0) {
+        for (let i = 0; i < tree._children.length; i++) {
+          findTarget(tree._children[i], targetValue);
         }
       }
     }
