@@ -12,13 +12,21 @@ HashTable.prototype.insert = function(k, v) {
   if (!bucket) {
     bucket = [];
     this._storage.set(index, bucket);
+
   }
+
   for (var i = 0; i < bucket.length; i++) {
     if (bucket[i][0] === k) {
       bucket[i].splice(1, 1, v);
     }
   }
   bucket.push([k, v]);
+
+
+  if (bucket.length > 1) {
+    return 'There is a conflict at index ' + index;
+  }
+
 };
 
 

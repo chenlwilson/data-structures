@@ -23,6 +23,11 @@ describe('linkedList', function() {
     expect(linkedList.tail.value).to.equal(5);
   });
 
+  it('should return the value of the former tail when new tail is added', function() {
+    linkedList.addToTail(4);
+    expect(linkedList.addToTail(5)).to.equal(4);
+  });
+
   it('should remove the head from the list when removeHead is called', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
