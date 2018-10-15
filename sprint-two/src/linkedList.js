@@ -8,7 +8,7 @@ var LinkedList = function() {
   list.addToTail = function(value) {
     var oldTail = list._tail;
     var newNode = Node(value);//{value:value, next:null}
-    if (list._head === null && list._head === null) {
+    if (list._head === null && list._tail === null) {
       list._tail = newNode;
       list._head = newNode;
     }
