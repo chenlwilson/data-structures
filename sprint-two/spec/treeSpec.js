@@ -2,7 +2,7 @@ describe('tree', function() {
   var tree;
 
   beforeEach(function() {
-    tree = Tree();
+    tree = Tree(1);
   });
 
   it('should have methods named "addChild" and "contains", and a property named "value"', function() {
@@ -14,6 +14,7 @@ describe('tree', function() {
   it('should add children to the tree', function() {
     tree.addChild(5);
     expect(tree._children[0]._value).to.equal(5);
+    expect(tree._children[0]._parent._value).to.equal(1);
   });
 
   it('should return the number of children', function() {
@@ -43,6 +44,30 @@ describe('tree', function() {
     tree._children[1].addChild(8);
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
+  });
+
+  it('should disassociate child from parent in both directions', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree._children[0].addChild(7);
+    tree._children[0].addChild(8);
+    var six = tree._children[1];
+    tree.removeFromParent(6);
+    expect(tree._children.length).to.equal(1);
+    expect(six._parent).to.equal(null);
+    var eight = tree._children[0]._children[1];
+    tree.removeFromParent(8);
+    expect(tree._children[0]._children.length).to.equal(1);
+    expect(eight._parent).to.equal(null);
+  });
+
+  it('should accept a callback and execute it on every value', function() {
+    var cb = function(x) { return x + 1; };
+    tree.addChild(5);
+    tree.addChild(8);
+    tree.traverse(cb);
+    expect(tree.contains(6)).to.equal(true);
+    expect(tree.contains(9)).to.equal(true);
   });
 
 });
