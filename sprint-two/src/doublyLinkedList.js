@@ -74,6 +74,7 @@ var doublyLinkedList = function() {
   return list;
 };
 
+
 var Node = function(value) {
   var node = {};
 
