@@ -1,4 +1,3 @@
-
 var doublyLinkedList = function() {
 
   var list = {};
@@ -6,14 +5,14 @@ var doublyLinkedList = function() {
   list._tail = null;
 
   list.addToTail = function(value) {
-    var oldTail = list._tail;
     var newNode = Node(value);//{value:value, next:null}
     if (list._head === null && list._tail === null) {
       list._tail = newNode;
       list._head = newNode;
     } else {
-      list._tail.next = newNode;//add new node to the lastnode.next
-      newNode.previous = list._tail;//point previous to tail;
+      var oldTail = list._tail;
+      oldTail.next = newNode;//add new node to the lastnode.next
+      newNode.previous = oldTail;//point previous to tail;
       list._tail = newNode;//point tail to the new node
     }
     if (oldTail !== null) {
