@@ -3,6 +3,8 @@ var Tree = function(value) {
 
   newTree._value = value;
   newTree._children = [];
+  newTree._parent = null;
+
   _.extend(newTree, treeMethods);
 
   return newTree;
@@ -35,32 +37,24 @@ var treeMethods = {
 
   removeFromParent: function(value) {
 
-    var findTarget = function(tree, targetValue) {
-      if (tree._value === targetValue ) {
-        if (tree._parent !== null) {
-          for (let i = 0; i < tree._parent._children.length; i++) {
-            if (tree._parent._children[i]._value === targetValue) {
-              tree._parent._children.splice(i, 1);
-              break;
-            }
-          }
-        }
-        tree._parent = null;
-      } else {
-        if (tree._children.length > 0) {
-          for (let i = 0; i < tree._children.length; i++) {
-            findTarget(tree._children[i], targetValue);
-          }
-        }
+    var findValue = function(node) {
+      if (node._value === value) {
+        var index = node._parent._children.indexOf(value);
+        node._parent._children.splice(index, 1);
+        node._parent = null;
+      } else if (node._children.length > 0) {
+        node._children.forEach(function(child) {
+          findValue(child);
+        })
       }
-    };
-    findTarget(this, value);
+    }
+
+    findValue(this);
   },
 
   traverse: function(cb) {
 
     var recurse = function(node) {
-
       node._value = cb(node._value);
 
       if (node._children.length > 0) {
