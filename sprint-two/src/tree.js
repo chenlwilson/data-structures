@@ -1,5 +1,6 @@
 var Tree = function(value) {
   var newTree = {};
+<<<<<<< HEAD
 
   newTree._value = value;
 
@@ -11,6 +12,17 @@ var Tree = function(value) {
   newTree._parent = null;
 
   _.extend(newTree, treeMethods);
+||||||| merged common ancestors
+  newTree.value = value;
+
+  // your code here
+  newTree.children = null;  // fix me
+=======
+  newTree.value = value;
+  // your code here
+  newTree.children = [];  // fix me
+  _.extend(newTree, treeMethods);
+>>>>>>> part-one
 
   return newTree;
 };
@@ -18,13 +30,19 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
+<<<<<<< HEAD
   var newNode = Tree(value);
   this._children.push(newNode);
   newNode._parent = this;
   return this._children.length;
+||||||| merged common ancestors
+=======
+  this.children.push(Tree(value));
+>>>>>>> part-one
 };
 
 treeMethods.contains = function(target) {
+<<<<<<< HEAD
   var result = false;
   var findTarget = function(tree, targetValue) {
     if (tree._value === targetValue ) {
@@ -77,12 +95,33 @@ treeMethods.traverse = function(cb) {
   };
   findTarget(this);
 
+||||||| merged common ancestors
+=======
+  var hasTarget = function(n) {
+    if(n.value === target) {
+      return true;
+    }
+    for(var i = 0; i < n.children.length; i++) {
+      if(hasTarget(n.children[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return hasTarget(this);
+>>>>>>> part-one
 };
 
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+<<<<<<< HEAD
  * addChild: O(1)
  * contains: O(n)
+||||||| merged common ancestors
+=======
+ *addChild: O(1)
+ *contains: O(n)
+>>>>>>> part-one
  */
