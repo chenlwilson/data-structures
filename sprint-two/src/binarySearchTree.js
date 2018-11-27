@@ -57,6 +57,30 @@ var BinarySearchTree = function(value) {
     return recurse(newBST);
   }
 
+  newBST.breadthFirstLog = function(cb) {
+    var queue = [];
+    cb(newBST.value);
+    queue.push(newBST);
+
+    var recurse = function(node) {
+      if (node.left !== null) {
+        cb(node.left.value);
+        queue.push(node.left)
+      }
+      if (node.right !== null) {
+        cb(node.right.value);
+        queue.push(node.right)
+      }
+      queue.shift();
+      if (queue.length > 0) {
+        recurse(queue[0]);
+      }
+    }
+
+    recurse(newBST);
+  }
+
+
   return newBST;
 };
 
